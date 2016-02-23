@@ -1,7 +1,13 @@
-%define SYS_EXIT  1
-%define SYS_WRITE 4
+%define SYS_EXIT    1
+%define SYS_FORK    2
+%define SYS_READ    3 ; read(unsigned int FILE_DESCRIPTOR, char * STR, size_t size)
+%define SYS_WRITE   4 ; write(unsigned int FILE_DESCRIPTOR, char * STR, size_t size)
+%define SYS_OPEN    5 ; open(char * filename, int oflag, int mode)
+%define SYS_CLOSE   6 ; close(int FILE_DESCRIPTOR)
 
-%define STDOUT    1
+%define STDIN       0
+%define STDOUT      1
+%define STDERR      2
 
 %macro linebreak 0
     mov eax, SYS_WRITE
