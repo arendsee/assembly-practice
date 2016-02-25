@@ -9,19 +9,24 @@
 %define STDOUT      1
 %define STDERR      2
 
-%macro linebreak 0
-    mov eax, SYS_WRITE
-    mov ebx, STDOUT
-    mov ecx, newline
-    mov edx, 1
-    int 0x80
-%endmacro
-
 %macro slice 3
     mov eax, SYS_WRITE
     mov ebx, STDOUT
     mov ecx, %1 ; array variable name
     add ecx, %2 ; index
     mov edx, %3 ; number of elements to print
+    int 0x80
+%endmacro
+
+%macro print_byte 1
+    mov eax, SYS_WRITE
+    mov ebx, STDOUT
+    mov ecx, %1
+    mov edx, 1
+    int 0x80
+%endmacro
+
+%macro exit 0
+    mov eax, SYS_EXIT
     int 0x80
 %endmacro
