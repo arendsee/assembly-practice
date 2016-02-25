@@ -1,6 +1,7 @@
 ; a basic hello world program
 
 ; macros can be defined just like in C
+; unlike symbols, they can be redefined and hold arbitrary entities
 ; system calls are numbered
 %define SYS_EXIT  1
 %define SYS_WRITE 4
@@ -20,7 +21,7 @@ len equ $ - msg    ;initialize the len variable
 
 ; program code
 section	.text
-   global_start   ;required in all programs, must be declared for linker (ld)
+   global _start   ;required in all programs, must be declared for linker (ld)
 
 _start:	          ;tells linker entry point
 
@@ -37,12 +38,12 @@ _start:	          ;tells linker entry point
 ; ARGV 1
    mov	ebx, STDOUT ;file descriptor (stdout)
 ; ARGV 2
-   mov	ecx,msg   ;message to write
+   mov	ecx, msg ;message to write
 ; ARGV 3
-   mov	edx,len   ;message length, variables declared in .data section
+   mov	edx, len ;message length, variables declared in .data section
 ; execute whatever is in eax
-   int	0x80      ;call kernel
+   int	0x80 ;call kernel
 	
 ; set eax to a new command (sys_exit)
    mov	eax, SYS_EXIT
-   int	0x80      ;call kernel
+   int	0x80 ;call kernel

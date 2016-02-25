@@ -1,4 +1,4 @@
-TARGET=include
+TARGET=ifelse
 
 ${TARGET}: ${TARGET}.asm
 	nasm  -i../ -f elf ${TARGET}.asm
